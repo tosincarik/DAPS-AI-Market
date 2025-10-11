@@ -1,5 +1,5 @@
 {
   "trend": "upward",
-  "rationale": "Analyzing the provided mock stock data for AAPL, there is a clear upward trend identified based on a series of higher highs and higher lows over the specified time period. Additionally, the moving averages indicate a bullish pattern with the short-term moving average consistently above the long-term moving average. The RSI (Relative Strength Index) readings suggest that the stock is not currently overbought, allowing for further upward momentum. Volume analysis confirms increased buying interest, supporting the upward trend narrative.",
+  "rationale": "The historical price movements for AAPL indicate a consistent increase in price over the analyzed period, confirmed by a rising series of higher highs and higher lows. Additionally, technical indicators such as the RSI are above 50, indicating bullish momentum, while the MACD has shown positive divergence, suggesting a continuation of upward momentum. Trading volume has also been increasing alongside price, which typically confirms the strength of an upward trend.",
   "confidence": 0.85
 }

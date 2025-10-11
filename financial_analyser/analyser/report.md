@@ -1,5 +1,5 @@
 {
   "final_recommendation": "Buy",
-  "justification": "Both domain analysts indicate a clearly identified upward trend for AAPL stock, supported by technical indicators such as higher highs and higher lows, bullish moving averages, and positive RSI readings. The analyses align regarding the positive sentiment and rationale, indicating that the stock is not overbought and that increased buying interest is present. With the gathered information reflecting a consensus on an upward trajectory, it is advisable to recommend a buy at this time.",
+  "justification": "Both the chart analyst and the news analyst provide consistent observations regarding AAPL's price movements, indicating a strong upward trend characterized by a series of higher highs and higher lows. Their analyses are aligned in highlighting vital technical indicators with bullish signals, such as the RSI above 50 and positive MACD divergence. Additionally, the increase in trading volume corroborates the strength of this trend. Given this consensus and strong rationale from both domains, a 'Buy' recommendation is warranted.",
   "overall_confidence": 0.85
 }
