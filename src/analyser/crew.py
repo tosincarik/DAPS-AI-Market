@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
-from analyser.mock_api import get_mock_stock_data, get_mock_news_sentiment
+from .mock_api import get_mock_stock_data, get_mock_news_sentiment
 from typing import List
 import yaml
 import os
