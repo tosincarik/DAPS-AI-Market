@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
-from .mock_api import get_mock_stock_data, get_mock_news_sentiment
+from .real_api import get_real_stock_data, get_real_news_sentiment
 from typing import List
 import yaml
 import os
@@ -73,16 +73,18 @@ class Analyser():
         topic = "Apple stock"
 
 
-        # Fetch mock data
-        stock_data = get_mock_stock_data(stock_symbol)
-        news_data = get_mock_news_sentiment(topic)
+
+        # Fetch live API data
+        stock_data = get_real_stock_data(stock_symbol)
+        news_data = get_real_news_sentiment(topic)
+
 
     # Inject mock data into crew context
         context = {
             "stock_symbol": stock_symbol,
             "news_topic": topic,
-            "mock_stock_data": stock_data,
-            "mock_news_data": news_data,
+            "stock_data": stock_data,
+            "news_data": news_data,
         }
 
 
