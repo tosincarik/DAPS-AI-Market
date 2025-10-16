@@ -1,27 +1,46 @@
+
 import os
 import requests
+from dotenv import load_dotenv
 
-ALPHA_VANTAGE_API_KEY = os.getenv("ALPHAVANTAGE_API_KEY")
+load_dotenv()  # Ensure environment variables are loaded
+
+ALPHAVANTAGE_API_KEY = os.getenv("ALPHAVANTAGE_API_KEY")
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+
 
 def get_real_stock_data(symbol: str):
     """
-    Fetches stock time series data from Alpha Vantage API.
+    Fetch daily stock data from Alpha Vantage for the given symbol.
+    Raises detailed errors if the API response is unexpected.
     """
-    url = f"https://www.alphavantage.co/query"
+    if not ALPHAVANTAGE_API_KEY:
+        raise Exception("Alpha Vantage API key not found in environment variables.")
+
+    url = "https://www.alphavantage.co/query"
     params = {
-        "function": "TIME_SERIES_DAILY_ADJUSTED",
+        "function": "TIME_SERIES_DAILY",
         "symbol": symbol,
-        "apikey": ALPHA_VANTAGE_API_KEY
+        "apikey": ALPHAVANTAGE_API_KEY,
+        "outputsize": "compact"
     }
 
     response = requests.get(url, params=params)
-    data = response.json()
+    
+    try:
+        data = response.json()
+    except Exception as e:
+        raise Exception(f"Failed to parse JSON from Alpha Vantage: {e}")
+
+    # Debug: print the raw response to see what we got
+    print(f"Alpha Vantage response for {symbol}:", data)
 
     if "Time Series (Daily)" not in data:
-        raise Exception(f"Alpha Vantage API Error: {data.get('Note') or data.get('Error Message')}")
-    
+        error_msg = data.get("Note") or data.get("Error Message") or "Unexpected response structure"
+        raise Exception(f"Alpha Vantage API Error: {error_msg}")
+
     return data["Time Series (Daily)"]
+
 
 
 def get_real_news_sentiment(query: str):

@@ -1,7 +1,5 @@
-```json
 {
   "trend": "upward",
-  "rationale": "The historical price movements of AAPL indicate a consistent increase in price over the recent analysis period, supported by rising trading volumes, which typically confirm bullish sentiment. Additionally, key indicators such as a 50-day moving average crossing above the 200-day moving average suggest a strong upward momentum, signaling a potential continuation of the uptrend. The RSI is maintaining levels above 50, indicating strength, while MACD shows a bullish crossover, further solidifying the upward trend narrative.",
+  "rationale": "The analysis of historical stock price charts shows a consistent increase in AAPL's price over the analyzed period. There has been a series of higher highs and higher lows, indicating a solid uptrend. Additionally, the RSI is above 50, suggesting bullish momentum, while the MACD line has crossed above the signal line, further confirming the upward trend. Trading volume has also shown spikes during price increases, which typically signals strong buying interest. This combination of factors leads to a positive outlook on the trend of AAPL stock.",
   "confidence": 0.85
 }
-```

@@ -12,7 +12,7 @@ async def root():
 async def run_analysis(request: Request):
     data = await request.json()
     stock_symbol = data.get("stock_symbol", "AAPL")
-    news_topic = data.get("news_topic", "Apple stock")
+    news_topic = data.get("news_topic", f"{stock_symbol} stock")
 
     inputs = {
         "stock_symbol": stock_symbol,
