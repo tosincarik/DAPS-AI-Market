@@ -1,54 +1,82 @@
-  chart_analysis_task:
-    description: >
-      Use the provided  stock data for {stock_symbol} to analyse price movements,
-      identify key patterns, and determine if there is an uptrend, downtrend, or neutral trend.
-      Data is available under {{ stock_data }}.
-    expected_output: >
-      A JSON summary containing:
-        - "trend": (upward, downward, or neutral)
-        - "rationale": explanation of the trend
-        - "confidence": a float between 0 and 1
-        - "technical_indicators":  # new field
-            RSI: float
-            MACD: float
-            moving_averages: 
-              short_term: float
-              long_term: float
-        - "key_prices":
-            latest_close: float
-            recent_high: float
-            recent_low: float
-    agent: chart_analyst
-    output_file: output/chart_analysis.md
+chart_analysis_task:
+  description: >
+    Analyse the recent price performance of {stock_symbol} using {{ stock_data }}.
+    Identify bullish or bearish trends, calculate key technical indicators
+    (RSI, MACD, moving averages), and provide key prices.
+  expected_output: >
+    {
+      "trend": "<upward/downward/neutral>",
+      "rationale": "<brief explanation of trend>",
+      "confidence": "<float between 0 and 1>",
+      "technical_indicators": {
+        "RSI": "<float>",
+        "MACD": "<float>",
+        "moving_averages": {
+          "short_term": "<float>",
+          "long_term": "<float>"
+        }
+      },
+      "key_prices": {
+        "latest_close": "<float>",
+        "recent_high": "<float>",
+        "recent_low": "<float>"
+      }
+    }
+  agent: chart_analyst
+  output_file: output/chart_analysis.md
 
-  news_sentiment_task:
-    description: >
-      Use the provided news dataset for {news_topic} stored in {{ news_data }}.
-      Determine overall sentiment direction, rationale, and confidence.
-    expected_output: >
-      A JSON summary containing:
-        - "sentiment": (positive, negative, or neutral)
-        - "rationale": explanation of the sentiment
-        - "confidence": a float between 0 and 1
-        - "top_news_items":  # new field
-          - title: string
-            date: string
-            summary: string
-            sentiment_score: float
-    agent: news_analyst
-    output_file: output/news_analysis.md
+news_sentiment_task:
+  description: >
+    Analyse the latest news for {news_topic} using {{ news_data }}.
+    Determine overall sentiment, highlight top impactful news items,
+    and provide confidence in analysis.
+  expected_output: >
+    {
+      "sentiment": "<positive/negative/neutral>",
+      "rationale": "<brief explanation of sentiment>",
+      "confidence": "<float between 0 and 1>",
+      "top_news_items": [
+        {
+          "title": "<string>",
+          "date": "<YYYY-MM-DD>",
+          "summary": "<string>",
+          "sentiment_score": "<float>"
+        }
+      ]
+    }
+  agent: news_analyst
+  output_file: output/news_analysis.md
 
-  dap_consensus_task:
-    description: >
-      Combine outputs from both domain agents (chart_analyst and news_analyst)
-      using the DAP Protocol. Follow these three stages:
-      1. Intra-cluster consensus: confirm each agent’s internal consistency.
-      2. Inter-cluster negotiation: identify alignment or contradiction between agents.
-      3. Final harmonisation: produce a weighted consensus based on confidence and reliability.
-    expected_output: >
-      A single JSON summary with:
-        - "final_recommendation": (Buy, Hold, or Sell)
-        - "justification": explanation combining both domains
-        - "overall_confidence": float (weighted by confidence)
-    agent: dap_mediator
-    output_file: output/mediator_decider.md
+dap_consensus_task:
+  description: >
+    Combine outputs from chart_analyst and news_analyst using the DAP Protocol.
+    Produce a weighted consensus recommendation with justification.
+  expected_output: >
+    {
+      "final_recommendation": "<Buy/Hold/Sell>",
+      "justification": "<human-readable explanation combining chart and news analysis>",
+      "overall_confidence": "<float between 0 and 1>",
+      "technical_indicators": {
+        "RSI": "<float>",
+        "MACD": "<float>",
+        "moving_averages": {
+          "short_term": "<float>",
+          "long_term": "<float>"
+        }
+      },
+      "key_prices": {
+        "latest_close": "<float>",
+        "recent_high": "<float>",
+        "recent_low": "<float>"
+      },
+      "news_details": [
+        {
+          "title": "<string>",
+          "date": "<YYYY-MM-DD>",
+          "summary": "<string>",
+          "sentiment_score": "<float>"
+        }
+      ]
+    }
+  agent: dap_mediator
+  output_file: output/mediator_decider.md

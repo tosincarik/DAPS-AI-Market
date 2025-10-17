@@ -1,18 +1,14 @@
 from fastapi import FastAPI, Request
-from datetime import datetime
 from .crew import Analyser
 import json
 
-app = FastAPI(title="CrewAI Market Analysis API")  # 👈 this MUST be before any @app decorator
+app = FastAPI(title="CrewAI Market Analysis API")
 
 
 @app.get("/")
 async def root():
     return {"message": "CrewAI Market Analysis API is running."}
 
-
-
-import json
 
 @app.post("/run-analysis")
 async def run_analysis(request: Request):
@@ -24,20 +20,8 @@ async def run_analysis(request: Request):
 
     try:
         analyser = Analyser()
-        crew_instance = analyser.crew()
-        result = crew_instance.kickoff(inputs=inputs)  # kickoff with inputs
-
-        if not result.raw:
-            return {"status": "error", "message": "Crew returned no result"}
-
-        # --- Parse raw output into dict if it is string ---
-        if isinstance(result.raw, str):
-            try:
-                raw_data = json.loads(result.raw)
-            except json.JSONDecodeError:
-                return {"status": "error", "message": "Crew returned invalid JSON"}
-        else:
-            raw_data = result.raw
+        # Crew now returns structured JSON directly
+        raw_data = analyser.crew(inputs=inputs)
 
         # Build structured output including technical indicators and news
         structured_result = {

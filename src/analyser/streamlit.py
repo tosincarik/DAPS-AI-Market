@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-import json
 
 st.set_page_config(page_title="Market Analysis Dashboard", layout="wide")
 
@@ -14,7 +13,6 @@ if st.button("Run Analysis"):
     if user_query:
         st.info(f"Analysing: **{user_query}** ...")
 
-        # Send the user query to FastAPI backend
         try:
             response = requests.post(
                 "http://127.0.0.1:8000/run-analysis",
@@ -27,6 +25,7 @@ if st.button("Run Analysis"):
                 if result.get("status") == "success":
                     data = result.get("result", {})
 
+                    # --- Final Recommendation ---
                     st.subheader("🟢 Final Recommendation")
                     st.write(f"**Recommendation:** {data.get('final_recommendation', 'N/A')}")
                     st.write(f"**Confidence:** {data.get('overall_confidence', 0):.2f}")
@@ -35,33 +34,33 @@ if st.button("Run Analysis"):
                     st.markdown("### 📊 Technical Indicators")
                     tech = data.get("technical_indicators", {})
                     if tech:
-                        st.write(f"**RSI:** {tech.get('RSI')}")
-                        st.write(f"**MACD:** {tech.get('MACD')}")
+                        st.write(f"**RSI:** {tech.get('RSI', 'N/A')}")
+                        st.write(f"**MACD:** {tech.get('MACD', 'N/A')}")
                         ma = tech.get("moving_averages", {})
-                        st.write(f"**Short-term MA:** {ma.get('short_term')}")
-                        st.write(f"**Long-term MA:** {ma.get('long_term')}")
+                        st.write(f"**Short-term MA:** {ma.get('short_term', 'N/A')}")
+                        st.write(f"**Long-term MA:** {ma.get('long_term', 'N/A')}")
 
                     # --- Key Prices ---
                     st.markdown("### 💹 Key Prices")
                     prices = data.get("key_prices", {})
                     if prices:
-                        st.write(f"**Latest Close:** {prices.get('latest_close')}")
-                        st.write(f"**Recent High:** {prices.get('recent_high')}")
-                        st.write(f"**Recent Low:** {prices.get('recent_low')}")
+                        st.write(f"**Latest Close:** {prices.get('latest_close', 'N/A')}")
+                        st.write(f"**Recent High:** {prices.get('recent_high', 'N/A')}")
+                        st.write(f"**Recent Low:** {prices.get('recent_low', 'N/A')}")
 
                     # --- Latest News ---
                     st.markdown("### 📰 Latest News Used in Analysis")
                     news_items = data.get("news_details", [])
                     if news_items:
                         for news in news_items:
-                            st.markdown(f"**{news['title']}** ({news['date']})")
-                            st.write(news['summary'])
-                            st.write(f"🧭 Sentiment Score: {news['sentiment_score']}")
+                            st.markdown(f"**{news.get('title', 'No Title')}** ({news.get('date', 'No Date')})")
+                            st.write(news.get('summary', 'No Summary'))
+                            st.write(f"🧭 Sentiment Score: {news.get('sentiment_score', 'N/A')}")
                             st.divider()
 
                     # --- Justification ---
                     st.markdown("### 🧩 Justification Summary")
-                    st.write(data.get("justification", ""))
+                    st.write(data.get("justification", "No justification provided."))
 
                 else:
                     st.warning(f"No valid result returned: {result.get('message')}")
