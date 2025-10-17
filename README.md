@@ -1,4 +1,4 @@
-#📊 DAPS-AI Market Analysis Dashboard
+## 📊 DAPS-AI Market Analysis Dashboard
 
 
 
@@ -11,7 +11,7 @@ Welcome to the DAPS-AI Market Analysis Dashboard, powered by CrewAI. This projec
 
 The system leverages live data from financial and news APIs, CrewAI agents, and a fully interactive Streamlit dashboard for visualization.
 
-🚀 Features
+## 🚀 Features
 
 Multi-agent analysis: Chart Analyst and News Analyst agents evaluate stocks.
 
@@ -29,7 +29,7 @@ Justification: Provides confidence-weighted reasoning for recommendations.
 
 Interactive UI: Built with Streamlit for easy querying and visualization.
 
-📦 Installation
+## 📦 Installation
 Requirements
 
 Python >= 3.10 and < 3.14
@@ -39,7 +39,7 @@ UV
 
 Steps
 
-Clone the repository:
+### Clone the repository:
 
 
 ```
@@ -48,19 +48,19 @@ cd daps-ai-market
 
 ```
 
-Install uv (if not already installed):
+### Install uv (if not already installed):
 
 ```
 pip install uv
 ```
 
-Install project dependencies:
+### Install project dependencies:
 ```
 crewai install
 
 ```
 
-Configure API keys in a .env file at the project root:
+### Configure API keys in a .env file at the project root:
 ```
 ALPHAVANTAGE_API_KEY=your_alpha_vantage_api_key
 NEWSAPI_KEY=your_newsapi_key
@@ -70,7 +70,7 @@ OPENAI_API_KEY=your_openai_api_key
 Note: Make sure your API keys are valid and have sufficient request limits.
 
 
-Project Structure :
+## Project Structure :
 ```
 src/
  └─ analyser/
@@ -85,8 +85,7 @@ src/
 ```
 
 
-
-⚡ Usage
+## ⚡ Usage
 1. Start the FastAPI Backend on one terminal
 
 ```
@@ -110,7 +109,7 @@ streamlit run src/analyser/streamlit.py
 
 
 
-🛠 Technical Highlights
+## 🛠 Technical Highlights
 
 CrewAI Multi-Agent System
 
@@ -132,7 +131,8 @@ Dynamic query input (supports both ticker symbols and company names)
 
 Interactive display of technical indicators, prices, news, and recommendations
 
-🌐 Deployment
+
+## 🌐 Deployment
 
 Backend API can be hosted on Render or any cloud provider that supports FastAPI.
 
@@ -140,7 +140,8 @@ Streamlit can be hosted separately for public dashboards.
 
 Ensure environment variables are set in the hosting environment.
 
-💡 Future Improvements
+
+## 💡 Future Improvements
 
 Add stock price charts and moving averages visualizations.
 
@@ -150,7 +151,8 @@ Expand agents to cover global market indices and commodities.
 
 Add user authentication and custom watchlists.
 
-📚 References
+
+## 📚 References
 
 CrewAI Documentation
 
@@ -160,10 +162,12 @@ NewsAPI
 
 Streamlit
 
-🤝 Contribution
+
+## 🤝 Contribution
 
 Contributions, suggestions, and bug reports are welcome! Open issues or submit pull requests.
 
-📝 License
+
+## 📝 License
 
 MIT License
