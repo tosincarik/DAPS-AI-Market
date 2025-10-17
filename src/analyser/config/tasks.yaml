@@ -8,6 +8,16 @@
         - "trend": (upward, downward, or neutral)
         - "rationale": explanation of the trend
         - "confidence": a float between 0 and 1
+        - "technical_indicators":  # new field
+            RSI: float
+            MACD: float
+            moving_averages: 
+              short_term: float
+              long_term: float
+        - "key_prices":
+            latest_close: float
+            recent_high: float
+            recent_low: float
     agent: chart_analyst
     output_file: output/chart_analysis.md
 
@@ -20,6 +30,11 @@
         - "sentiment": (positive, negative, or neutral)
         - "rationale": explanation of the sentiment
         - "confidence": a float between 0 and 1
+        - "top_news_items":  # new field
+          - title: string
+            date: string
+            summary: string
+            sentiment_score: float
     agent: news_analyst
     output_file: output/news_analysis.md
 

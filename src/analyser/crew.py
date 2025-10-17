@@ -67,32 +67,21 @@ class Analyser():
         )
     #CREW-----------------------------
 
+
     @crew
-    def crew(self, inputs:dict = None) -> Crew:
-
-        """Creates the Analyser crew with dynamic inputs
-                Inputs dict can contain:
-          - stock_symbol: str
-          - news_topic: str
-          """
-
-
-        #Hardcoded and not to be used for dynamic processing
-        # #stock_symbol = "AAPL"
-        #topic = "Apple stock"
-
+    def crew(self, inputs: dict = None) -> Crew:
+        """Creates the Analyser crew with dynamic inputs"""
         inputs = inputs or {}
         stock_symbol = inputs.get("stock_symbol", "AAPL")
         news_topic = inputs.get("news_topic", f"{stock_symbol} stock")
-
-
 
         # Fetch live API data
         stock_data = get_real_stock_data(stock_symbol)
         news_data = get_real_news_sentiment(news_topic)
 
+        
 
-    # Inject mock data into crew context
+        # Inject live data into crew context
         context = {
             "stock_symbol": stock_symbol,
             "news_topic": news_topic,
@@ -100,11 +89,10 @@ class Analyser():
             "news_data": news_data,
         }
 
-
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            agents=self.agents,
+            tasks=self.tasks,
             process=Process.sequential,
             context=context,
-            verbose=True,
+            verbose=True
         )

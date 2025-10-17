@@ -1,5 +1,5 @@
 {
   "final_recommendation": "Buy",
-  "justification": "Both the chart analyst and the news analyst present a consistent positive view on AAPL stock. The technical indicators from both analyses indicate a strong upward trend, supported by higher highs and higher lows. The concurrent RSI readings above 50 and MACD crossing suggest bullish momentum. Furthermore, increased trading volume during price rises confirms strong buying interest in the market. Given this unified perspective from both analyses, the recommendation is to buy AAPL stock.",
+  "justification": "Both the chart analyst and the news analyst indicate a strong upward trend for Apple stock. The technical indicators suggest momentum and positivity, with the RSI indicating strong momentum and MACD signaling bullish behavior. The news items further support this with positive sentiments around Apple’s strong earnings forecast and innovative products driving market interest, showing consistent alignment between technical analysis and market sentiment analysis. The confidence levels from both agents are high (0.85), indicating reliability in the upward momentum predicted. Therefore, the overall recommendation is to buy.",
   "overall_confidence": 0.85
 }
