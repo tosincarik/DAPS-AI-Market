@@ -1,6 +1,6 @@
   chart_analysis_task:
     description: >
-      Use the provided mock stock data for {stock_symbol} to analyse price movements,
+      Use the provided  stock data for {stock_symbol} to analyse price movements,
       identify key patterns, and determine if there is an uptrend, downtrend, or neutral trend.
       Data is available under {{ stock_data }}.
     expected_output: >
@@ -23,7 +23,7 @@
 
   news_sentiment_task:
     description: >
-      Use the provided mock news dataset for {news_topic} stored in {{ news_data }}.
+      Use the provided news dataset for {news_topic} stored in {{ news_data }}.
       Determine overall sentiment direction, rationale, and confidence.
     expected_output: >
       A JSON summary containing:
